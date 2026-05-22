@@ -3,7 +3,7 @@ from datetime import datetime
 from image_to_code import image_to_code
 
 
-def encrypt(s):
+def decrypt(s):
     arr = image_to_code(len(s))
 
     chars = [ord(c) for c in s]
@@ -17,7 +17,7 @@ def encrypt(s):
             elif chars[i] < 0:
                 chars[i] = chars[i] + pixel
             else:
-                chars[i] = chars[i] - pixel - int(datetime.now().strftime("%M"))
+                chars[i] = chars[i] + pixel + int(datetime.now().strftime("%M"))
 
     for i in range(len(chars)):
         chars[i] = int(chars[i]) % 256

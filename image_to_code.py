@@ -8,7 +8,7 @@ import numpy as np
 def image_to_code(length):
     img = Image.open('imagh.jpg')
 
-    img = img.resize((length, 40))
+    img = img.resize((length, 20))
 
     img = img.convert()
 
