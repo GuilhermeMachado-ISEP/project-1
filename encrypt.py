@@ -1,28 +1,38 @@
-from datetime import datetime
+from math import floor
 
 from image_to_code import image_to_code
 
 
 def encrypt(s):
-    arr = image_to_code(len(s))
+    nums = [0, 0]
+
+    arr = image_to_code(len(s), nums)
 
     chars = [ord(c) for c in s]
 
 
     for line in arr:
         for i in range(len(chars)):
-            pixel = int(line[i % len(line)][0])
-            if chars[i] > 120:
-                chars[i] = chars[i] - pixel
-            elif chars[i] < 0:
-                chars[i] = chars[i] + pixel
+            if i%3==0:
+                chars[i] = chars[i] + line[i%len(line)][0]
+            elif i%3==1:
+                chars[i] = chars[i] - line[i%len(line)][1]
             else:
-                chars[i] = chars[i] - pixel - int(datetime.now().strftime("%M"))
+                chars[i] = chars[i] + line[i%len(line)][2]
+
 
     for i in range(len(chars)):
-        chars[i] = int(chars[i]) % 256
+        if chars[i] > 127:
+            while chars[i] > 127:
+                chars[i] = chars[i]-127
+        elif chars[i] <0:
+            while chars[i] < 0:
+                chars[i] = chars[i]+127
+        chars[i] = floor(chars[i])
 
     result = ''.join(chr(c) for c in chars)
+
+    result += str(nums[0]) + str(nums[1])
 
     return result
 

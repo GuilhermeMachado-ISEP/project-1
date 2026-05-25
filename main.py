@@ -12,5 +12,4 @@ def main():
 
     print('Decrypted String: ', s)
 
-
 main()
