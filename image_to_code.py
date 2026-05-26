@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 
 def image_to_code(length, nums):
-    img = Image.open('imaghnaghtest.jpg')
+    img = Image.open('baseimg.jpg')
 
     img = img.resize((length*2, length*2))
 
@@ -25,7 +25,7 @@ def image_to_code(length, nums):
     return pixels
 
 def get_specific_area(length, nums):
-    img = Image.open('imaghnaghtest.jpg')
+    img = Image.open('baseimg.jpg')
 
     img = img.resize((length * 2, length * 2))
 

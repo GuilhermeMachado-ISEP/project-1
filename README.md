@@ -4,7 +4,7 @@ An image-based encryption tool that uses pixel data from a source image to trans
 
 ## How it works
 
-1. A source image (`imaghnaghtest.jpg`) is resized and randomly cropped based on the input length
+1. A source image (`baseimg.jpg`) is resized and randomly cropped based on the input length. It's ideal this image is on a 1:1 scale in order to assure better encryption results
 2. Each character's ASCII value is modified by RGB pixel values from the cropped region using alternating add/subtract operations
 3. Values are clamped to the printable ASCII range (0–127) using modulo 128
 4. Random crop coordinates are appended to the ciphertext for decryption
