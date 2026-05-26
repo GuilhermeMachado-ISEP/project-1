@@ -1,4 +1,5 @@
-from math import floor
+import warnings
+warnings.filterwarnings('ignore', category=RuntimeWarning)
 
 from image_to_code import image_to_code
 
@@ -22,13 +23,7 @@ def encrypt(s):
 
 
     for i in range(len(chars)):
-        if chars[i] > 127:
-            while chars[i] > 127:
-                chars[i] = chars[i]-127
-        elif chars[i] <0:
-            while chars[i] < 0:
-                chars[i] = chars[i]+127
-        chars[i] = floor(chars[i])
+        chars[i] = int(chars[i]) % 128
 
     result = ''.join(chr(c) for c in chars)
 

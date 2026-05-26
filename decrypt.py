@@ -1,4 +1,5 @@
-from math import floor
+import warnings
+warnings.filterwarnings('ignore', category=RuntimeWarning)
 
 from image_to_code import get_specific_area
 
@@ -21,13 +22,7 @@ def decrypt(s):
                 chars[i] = chars[i] - line[i%len(line)][2]
 
     for i in range(len(chars)-2):
-        if chars[i] < 0:
-            while chars[i] < 0:
-                chars[i] = chars[i] + 127
-        elif chars[i] > 127:
-            while chars[i] > 127:
-                chars[i] = chars[i] - 127
-        chars[i] = floor(chars[i])
+        chars[i] = int(chars[i]) % 128
 
     result = ''.join(chr(c) for c in chars)
 
